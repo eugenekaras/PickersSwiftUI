@@ -15,8 +15,12 @@ struct ContentView: View {
         VStack{
             
             Picker("Some text", selection:  $section) {
-                ForEach(settingTime, id: \.self){ val in
-                    Text(val.description.capitalized)
+//                ForEach(settingTime, id: \.self){ val in
+//                    Text(val.description.capitalized)
+//                }
+                
+                ForEach(0..<settingTime.count ){
+                    Text(settingTime[$0])
                 }
             }
             
