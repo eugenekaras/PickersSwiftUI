@@ -8,18 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var section = 20
+    @State var section = 0
     var settingTime = ["10 min", "20 min","30 min","40 min"]
     var body: some View {
 
         VStack{
             
-            Picker(selection:  $section) {
-                ForEach(self.settingTime){
-                    Text(self.settingTime[$0])
+            Picker("Some text", selection:  $section) {
+                ForEach(settingTime, id: \.self){ val in
+                    Text(val.description.capitalized)
                 }
-            } label: {
-                Text("Tyyyy")
             }
             
             Text("Время выбрано - \( settingTime[section])")
