@@ -9,23 +9,43 @@ import SwiftUI
 
 struct ContentView: View {
     @State var section = 0
-    var settingTime = ["10 min", "20 min","30 min","40 min"]
+    @State var sectionPrc = 0
+    @State var isOn = false
+    var settingTime = ["10 min", "20 min","30 min","40 min" ]
+    
+    var procents = ["10 prc", "20 prc","30 prc","40 prc","50 prc","60 prc","70 prc","80 prc","90 prc","100 prc" ]
     var body: some View {
-
-        VStack{
-            
-            Picker("Some text", selection:  $section) {
-//                ForEach(settingTime, id: \.self){ val in
-//                    Text(val.description.capitalized)
-//                }
+        NavigationView {
+            Form{
                 
-                ForEach(0..<settingTime.count ){
-                    Text(settingTime[$0])
+                
+                Picker("Time", selection:  $section) {
+                    
+                    ForEach(0..<settingTime.count ){
+                        Text(settingTime[$0])
+                    }
+                }.pickerStyle(.navigationLink)
+                
+                Toggle(isOn: $isOn) {
+                    Text("Авиарежим").foregroundColor(isOn ? .orange: .gray)
                 }
-            }
-            
-            Text("Время выбрано - \( settingTime[section])")
-            
+                
+                Picker("Подсветка", selection:  $sectionPrc) {
+                    
+                    ForEach(0..<procents.count ){
+                        Text(procents[$0])
+                    }
+                }.pickerStyle(.navigationLink)
+                
+                Picker("Items", selection:  $sectionPrc) {
+                    
+                    ForEach(0..<100) {i in
+                        Text("item = \(i)")
+                    }
+                }.pickerStyle(.navigationLink)
+                
+                
+            }.navigationTitle("Настройки")
         }
     }
 }
